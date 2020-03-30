@@ -14,6 +14,8 @@ constructor(props) {
   this.state = {
     dishes: DISHES
   };
+
+  
 }
   render() {
     return (
