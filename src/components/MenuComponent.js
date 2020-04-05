@@ -24,7 +24,7 @@ import { Card, CardImg, CardImgOverlay, CardTitle } from 'reactstrap';
 
         return (
             <div className="container">
-                <div className="row">
+                <div className="row row-content">
                     {menu}
                 </div>
             </div>
