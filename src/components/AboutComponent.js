@@ -19,7 +19,7 @@ function RenderLeader({leaders}){
     }
     else {
         return(
-            <div>que pedo que pedoooo</div>
+            <div></div>
         );
     }
 }
