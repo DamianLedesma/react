@@ -4,22 +4,28 @@ import { Control, LocalForm, Errors } from 'react-redux-form';
 import { Link } from 'react-router-dom';
 import { Loading } from './LoadingComponent';
 import { baseUrl } from '../shared/baseUrl';
+import { FadeTransform, Fade, Stagger} from 'react-animation-components';
 
     function RenderDish({dish}) {
 
         if (dish != null) {
             return (
-                <Card>
-                    <CardImg width="100%" src={baseUrl + dish.image} alt={dish.name} />
-                    <CardBody>
-                        <CardTitle>
-                            {dish.name}
-                        </CardTitle>
-                        <CardText>
-                            {dish.description}
-                        </CardText>
-                    </CardBody>
-                </Card>
+                <FadeTransform in
+                transformProps={{
+                    exitTransform: 'scale(0.5) translateY(-50%)'
+                }}>
+                    <Card>
+                        <CardImg width="100%" src={baseUrl + dish.image} alt={dish.name} />
+                        <CardBody>
+                            <CardTitle>
+                                {dish.name}
+                            </CardTitle>
+                            <CardText>
+                                {dish.description}
+                            </CardText>
+                        </CardBody>
+                    </Card>
+                </FadeTransform>
             );
         }
         else {
@@ -30,7 +36,7 @@ import { baseUrl } from '../shared/baseUrl';
     }
 
     function RenderComments({comments, postComment, dishId}) {
-        if (comments != null) {
+        if (comments != null) {                             
             const comms = comments.map((comment) => {
                 const date = new Intl.DateTimeFormat('en-US', {
                     year:'numeric',
@@ -40,8 +46,12 @@ import { baseUrl } from '../shared/baseUrl';
 
                 return (
                         <ul key={comment.id} className="list-unstyled">
-                            <li className="comment">{comment.comment}</li>
-                            <li className="author">-- {comment.author}, {date}</li>
+                            <Stagger in>
+                                <Fade in>
+                                    <li className="comment">{comment.comment}</li>
+                                    <li className="author">-- {comment.author}, {date}</li>
+                                </Fade>
+                            </Stagger>
                         </ul>
                 );
             })
