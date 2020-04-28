@@ -29,7 +29,7 @@ import { baseUrl } from '../shared/baseUrl';
         }
     }
 
-    function RenderComments({comments, addComment, dishId}) {
+    function RenderComments({comments, postComment, dishId}) {
         if (comments != null) {
             const comms = comments.map((comment) => {
                 const date = new Intl.DateTimeFormat('en-US', {
@@ -50,7 +50,7 @@ import { baseUrl } from '../shared/baseUrl';
                 <div className="col-12 col-md-5 m-1">
                     <h4>Comments</h4>
                     <div>{comms}</div>
-                    <CommentForm dishId={dishId} addComment={addComment} />
+                    <CommentForm dishId={dishId} postComment={postComment} />
                 </div>
 
             );
@@ -98,7 +98,7 @@ import { baseUrl } from '../shared/baseUrl';
                         <div className="col-12 col-md-5 m-1">
                             <RenderDish dish={props.dish}/>
                         </div>
-                            <RenderComments comments={props.comments} addComment={props.addComment} dishId={props.dish.id} />
+                            <RenderComments comments={props.comments} postComment={props.postComment} dishId={props.dish.id} />
                     </div>
                 </div>
             );    
@@ -128,7 +128,7 @@ class CommentForm extends Component {
 
     handleSubmit(value) {
         this.toggleModal();
-        this.props.addComment(this.props.dishId, value.rating, value.author, value.comment)
+        this.props.postComment(this.props.dishId, value.rating, value.author, value.comment)
     }
 
     render () {
