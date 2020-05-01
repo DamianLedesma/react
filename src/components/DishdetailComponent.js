@@ -45,21 +45,19 @@ import { FadeTransform, Fade, Stagger} from 'react-animation-components';
                 }).format(new Date(comment.date))
 
                 return (
+                    <Fade in>
                         <ul key={comment.id} className="list-unstyled">
-                            <Stagger in>
-                                <Fade in>
                                     <li className="comment">{comment.comment}</li>
                                     <li className="author">-- {comment.author}, {date}</li>
-                                </Fade>
-                            </Stagger>
                         </ul>
+                    </Fade>
                 );
             })
 
             return (
                 <div className="col-12 col-md-5 m-1">
                     <h4>Comments</h4>
-                    <div>{comms}</div>
+                    <div><Stagger in>{comms}</Stagger></div>
                     <CommentForm dishId={dishId} postComment={postComment} />
                 </div>
 
